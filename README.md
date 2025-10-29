@@ -43,17 +43,32 @@
    cd DiDi
    ```
 
-2. **安装依赖**
+2. **创建虚拟环境**
    ```bash
+   # 创建虚拟环境
+   python3 -m venv .venv
+   
+   # 激活虚拟环境 (Linux/macOS)
+   source .venv/bin/activate
+   # 或使用便捷脚本
+   source activate_venv.sh
+   
+   # 激活虚拟环境 (Windows)
+   .venv\Scripts\activate
+   ```
+
+3. **安装依赖**
+   ```bash
+   # 确保虚拟环境已激活
    pip install -r requirements.txt
    ```
 
-3. **配置ADB**
+4. **配置ADB**
    - 在Android手机上启用开发者选项和USB调试
    - 安装ADB工具并配置环境变量
    - 连接手机到电脑，确认ADB连接正常
 
-4. **配置系统**
+5. **配置系统**
    ```bash
    # 复制配置文件并根据实际情况修改
    cp config/settings.py.example config/settings.py

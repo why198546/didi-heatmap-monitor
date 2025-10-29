@@ -4,7 +4,7 @@
         {
             "label": "运行滴滴热力图监控系统",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["main.py", "--mode", "monitor", "--interval", "5"],
             "group": "build",
             "isBackground": true,
@@ -24,7 +24,7 @@
         {
             "label": "启动Web仪表板",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["main.py", "--mode", "web"],
             "group": "build",
             "isBackground": true,
@@ -44,7 +44,7 @@
         {
             "label": "单次运行热力图捕获",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["main.py", "--mode", "once"],
             "group": "test",
             "options": {
@@ -63,7 +63,7 @@
         {
             "label": "安装Python依赖",
             "type": "shell",
-            "command": "pip",
+            "command": "${workspaceFolder}/.venv/bin/pip",
             "args": ["install", "-r", "requirements.txt"],
             "group": "build",
             "options": {
@@ -101,7 +101,7 @@
         {
             "label": "数据库初始化",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["-c", "from src.database.data_manager import DataManager; dm = DataManager(); dm.initialize_database(); print('数据库初始化完成')"],
             "group": "build",
             "options": {
@@ -120,8 +120,27 @@
         {
             "label": "清理旧数据",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["-c", "from src.database.data_manager import DataManager; dm = DataManager(); dm.cleanup_old_data(days=7); print('数据清理完成')"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "系统初始化检查",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/python",
+            "args": ["-c", "from src.database.data_manager import DataManager; from src.image.hexagon_detector import HexagonDetector; dm = DataManager(); dm.initialize_database(); print('🎉 系统初始化检查完成，所有模块正常!')"],
             "group": "build",
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -139,7 +158,7 @@
         {
             "label": "测试图像处理模块",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/.venv/bin/python",
             "args": ["-c", "from src.image.hexagon_detector import HexagonDetector; print('图像处理模块加载成功')"],
             "group": "test",
             "options": {

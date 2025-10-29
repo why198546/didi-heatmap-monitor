@@ -23,6 +23,24 @@ from src.ml.predictor import HeatmapPredictor
 from src.web.dashboard import WebDashboard
 from config.settings import Config
 
+# 确保必要的目录存在
+def ensure_directories():
+    """确保所有必要的目录存在"""
+    directories = [
+        'data/logs',
+        'data/screenshots', 
+        'data/cache',
+        'data/processed',
+        'data/backup',
+        'models'
+    ]
+    
+    for directory in directories:
+        os.makedirs(directory, exist_ok=True)
+
+# 首先确保目录存在
+ensure_directories()
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -33,6 +51,9 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
+
+# 记录目录创建完成
+logger.info("✅ 目录结构检查完成")
 
 
 class DiDiHeatmapMonitor:
