@@ -173,10 +173,10 @@ class DiDiHeatmapMonitor:
                 logger.error(f"监控过程中出现错误: {e}")
                 time.sleep(60)  # 出错后等待1分钟再重试
     
-    def start_web_dashboard(self):
+    def start_web_dashboard(self, port=8080):
         """启动Web仪表板"""
-        logger.info("启动Web仪表板...")
-        self.web_dashboard.run()
+        logger.info(f"启动Web仪表板，端口: {port}")
+        self.web_dashboard.run(port=port)
 
 
 def main():
@@ -193,6 +193,8 @@ def main():
                        default='monitor', help='运行模式')
     parser.add_argument('--interval', type=int, default=5, 
                        help='监控间隔(分钟)')
+    parser.add_argument('--port', type=int, default=8080, 
+                       help='Web服务器端口号')
     
     args = parser.parse_args()
     
@@ -207,7 +209,7 @@ def main():
                 
         elif args.mode == 'web':
             # 仅启动Web仪表板
-            monitor.start_web_dashboard()
+            monitor.start_web_dashboard(port=args.port)
             
         else:
             # 持续监控模式（默认）

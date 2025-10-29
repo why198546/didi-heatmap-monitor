@@ -11,7 +11,7 @@ class Config:
     """配置管理类"""
     
     # ADB设置
-    ADB_PATH = "/usr/local/bin/adb"  # ADB工具路径，根据实际安装位置调整
+    ADB_PATH = "/opt/homebrew/bin/adb"  # ADB工具路径，根据实际安装位置调整
     DEVICE_ID = None  # 设备ID，None表示自动检测
     
     # 地图设置
