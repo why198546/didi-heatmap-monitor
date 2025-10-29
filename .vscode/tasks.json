@@ -1,0 +1,159 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "运行滴滴热力图监控系统",
+            "type": "shell",
+            "command": "python",
+            "args": ["main.py", "--mode", "monitor", "--interval", "5"],
+            "group": "build",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "启动Web仪表板",
+            "type": "shell",
+            "command": "python",
+            "args": ["main.py", "--mode", "web"],
+            "group": "build",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "单次运行热力图捕获",
+            "type": "shell",
+            "command": "python",
+            "args": ["main.py", "--mode", "once"],
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "安装Python依赖",
+            "type": "shell",
+            "command": "pip",
+            "args": ["install", "-r", "requirements.txt"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "检查ADB连接",
+            "type": "shell",
+            "command": "adb",
+            "args": ["devices"],
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "数据库初始化",
+            "type": "shell",
+            "command": "python",
+            "args": ["-c", "from src.database.data_manager import DataManager; dm = DataManager(); dm.initialize_database(); print('数据库初始化完成')"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "清理旧数据",
+            "type": "shell",
+            "command": "python",
+            "args": ["-c", "from src.database.data_manager import DataManager; dm = DataManager(); dm.cleanup_old_data(days=7); print('数据清理完成')"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "测试图像处理模块",
+            "type": "shell",
+            "command": "python",
+            "args": ["-c", "from src.image.hexagon_detector import HexagonDetector; print('图像处理模块加载成功')"],
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
